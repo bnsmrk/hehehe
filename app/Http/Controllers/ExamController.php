@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Hash;
-use App\Models\User;
 use Inertia\Inertia;
-use App\Models\GradeLevel;
 use Illuminate\Http\Request;
 
-class StudentRegisterController extends Controller
+class ExamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       $gradeLevels = GradeLevel::all();
-    return Inertia::render('Student/Index', [
-        'gradeLevels' => $gradeLevels,
-    ]);
+        return Inertia::render('Exam/Index');
     }
 
     /**
@@ -33,24 +27,9 @@ class StudentRegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|confirmed|min:6',
-        'year_level' => 'required|exists:grade_levels,id',
-    ]);
-
-    User::create([
-        'name' => $validated['name'],
-        'email' => $validated['email'],
-        'password' => Hash::make($validated['password']),
-        'role' => 'student',
-         'year_level' => $validated['year_level'],
-    ]);
-
-    return redirect()->route('student-register.index')->with('success', 'Registration successful! You may now log in.');
-}
+    {
+        //
+    }
 
     /**
      * Display the specified resource.

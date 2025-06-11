@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\GradeLevelController;
@@ -26,6 +27,7 @@ Route::resource('learning-resources', LearningResourcesController::class);
 
 Route::resource('student-register', StudentRegisterController::class);
 Route::resource('teacher-register', TeacherRegisterController::class);
+Route::resource('exams', ExamController::class);
 
 
 require __DIR__.'/settings.php';

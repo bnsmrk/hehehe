@@ -5,29 +5,38 @@ import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent } from 'react';
 
+type GradeLevel = {
+    id: number;
+    name: string;
+};
+
 type FormDataType = {
     name: string;
     email: string;
     password: string;
     password_confirmation: string;
+    year_level: string;
 };
 
 type PageProps = {
     flash?: {
         success?: string;
     };
+    gradeLevels: GradeLevel[];
 };
 
 export default function StudentRegistration() {
+    const { props } = usePage<PageProps>();
+    const { gradeLevels } = props;
+    const success = props.flash?.success;
+
     const { data, setData, post, processing, errors, reset } = useForm<FormDataType>({
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
+        year_level: '',
     });
-
-    const { props } = usePage<PageProps>();
-    const success = props.flash?.success;
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -52,6 +61,24 @@ export default function StudentRegistration() {
                         <Label htmlFor="email">Email</Label>
                         <Input id="email" type="email" value={data.email} onChange={(e) => setData('email', e.target.value)} required />
                         {errors.email && <div className="text-xs text-red-500">{errors.email}</div>}
+                    </div>
+                    <div className="mb-4">
+                        <Label htmlFor="year_level">Year Level</Label>
+                        <select
+                            id="year_level"
+                            value={data.year_level}
+                            onChange={(e) => setData('year_level', e.target.value)}
+                            required
+                            className="w-full rounded border px-3 py-2"
+                        >
+                            <option value="">Select year level</option>
+                            {gradeLevels.map((level) => (
+                                <option key={level.id} value={level.id}>
+                                    {level.name}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.year_level && <div className="text-xs text-red-500">{errors.year_level}</div>}
                     </div>
                     <div className="mb-4">
                         <Label htmlFor="password">Password</Label>
