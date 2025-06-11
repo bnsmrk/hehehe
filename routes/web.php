@@ -6,6 +6,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\GradeLevelController;
+use App\Http\Controllers\EnrollStudentController;
 use App\Http\Controllers\StudentRegisterController;
 use App\Http\Controllers\TeacherRegisterController;
 use App\Http\Controllers\LearningResourcesController;
@@ -28,6 +29,8 @@ Route::resource('learning-resources', LearningResourcesController::class);
 Route::resource('student-register', StudentRegisterController::class);
 Route::resource('teacher-register', TeacherRegisterController::class);
 Route::resource('exams', ExamController::class);
+Route::resource('enroll', EnrollStudentController::class);
+
 
 
 require __DIR__.'/settings.php';

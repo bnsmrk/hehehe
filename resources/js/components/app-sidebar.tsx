@@ -47,6 +47,11 @@ const mainNavItems: NavItem[] = [
         href: '/exams',
         icon: LayoutGrid,
     },
+    {
+        title: 'Enroll',
+        href: '/enroll',
+        icon: LayoutGrid,
+    },
 ];
 
 // const footerNavItems: NavItem[] = [

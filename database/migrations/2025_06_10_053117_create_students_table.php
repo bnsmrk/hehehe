@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Link to `users` table
-            $table->foreignId('grade_level_id')->constrained(); // Link to `grade_levels` table
-            $table->string('class_name')->nullable(); // Optional: Class name, e.g. "Grade 5-A"
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('grade_level_id')->constrained();
+            $table->foreignId('section_id')->constrained(); // Add this line
+            $table->string('class_name')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->timestamps();
         });

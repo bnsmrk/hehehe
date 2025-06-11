@@ -38,7 +38,7 @@ class StudentRegisterController extends Controller
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|string|confirmed|min:6',
-        'year_level' => 'required|exists:grade_levels,id',
+        // 'year_level' => 'required|exists:grade_levels,id', // Removed year_level validation
     ]);
 
     User::create([
@@ -46,7 +46,7 @@ class StudentRegisterController extends Controller
         'email' => $validated['email'],
         'password' => Hash::make($validated['password']),
         'role' => 'student',
-         'year_level' => $validated['year_level'],
+        // 'year_level' => $validated['year_level'], // Removed year_level assignment
     ]);
 
     return redirect()->route('student-register.index')->with('success', 'Registration successful! You may now log in.');
